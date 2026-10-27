@@ -1,0 +1,13 @@
+{
+  "projectId": "72401747",
+  "functions": {
+    "analyze-song": {
+      "hasChanged": false,
+      "hash": "d37d98e54455e21dc99280552496ce38778687573a3b0fbee91ed8c1107e80b5"
+    },
+    "youtube-streamer": {
+      "hasChanged": false,
+      "hash": "583e0df26d5d61282ba73f29969102e291c65843a7c746f2a14c4467db839f4e"
+    }
+  }
+}

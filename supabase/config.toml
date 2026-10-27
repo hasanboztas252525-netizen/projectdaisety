@@ -1,0 +1,5 @@
+[functions.analyze-song]
+verify_jwt = true
+
+[functions.youtube-streamer]
+verify_jwt = true
