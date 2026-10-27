@@ -100,6 +100,7 @@ function App() {
   const [audioError, setAudioError] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [appleMusicTrackId, setAppleMusicTrackId] = useState<number | null>(null);
+  const [selectedArtwork, setSelectedArtwork] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const todayKey = () => new Date().toISOString().slice(0, 10);
@@ -362,7 +363,7 @@ function App() {
   );
 
   const seed = hashString(songInput.trim().toLowerCase() + activeTab);
-  const albumArt = ALBUM_ART[seed % ALBUM_ART.length];
+  const albumArt = selectedArtwork || ALBUM_ART[seed % ALBUM_ART.length];
   const handleTabClick = (tab: TabId) => {
     if (audioRef.current) { audioRef.current.pause(); audioRef.current.src = ''; }
     setIsPlaying(false);
@@ -371,6 +372,7 @@ function App() {
     setITunesResults([]);
     setSelectedArtist('');
     setPreviewUrl(null);
+    setSelectedArtwork(null);
     setActiveTab(tab);
     setShowResult(false);
     setSongInput('');
@@ -542,6 +544,7 @@ function App() {
     setAudioError(false);
     setShowResult(false);
     setAppleMusicTrackId(null);
+    setSelectedArtwork(null);
   };
 
   const renderSingleCard = (label: string, Icon: typeof Sparkles, seed: number, tab: TabId) => {
@@ -1066,6 +1069,7 @@ function App() {
                         setSelectedArtist(song.artistName);
                         setPreviewUrl(song.previewUrl || null);
                         setAppleMusicTrackId(song.trackId || null);
+                        setSelectedArtwork(song.artworkUrl100 ? song.artworkUrl100.replace('100x100', '300x300') : null);
                         setITunesResults([]);
                       }}
                       className="flex items-center gap-2 px-3 py-2 rounded-lg text-left hover:bg-white/60 transition-colors"
